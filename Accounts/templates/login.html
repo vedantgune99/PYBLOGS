@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "Blog/templates/base.html" %}
 
 {% block 'title' %} Login Now! {% endblock %}
 
@@ -41,7 +41,7 @@
                 Remember me
               </label>
             </div>
-            <a href="{% url 'forgot_pass' %}" class="text-body">Forgot password?</a>
+            <a href="{% url 'password_reset' %}" class="text-primary"><b>Forgot password?</b></a>
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">

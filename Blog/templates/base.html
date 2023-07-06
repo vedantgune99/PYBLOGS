@@ -22,14 +22,12 @@
 
 <body style="background-color: #eee;">
 
-
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- Container wrapper -->
         <div class="container">
             <!-- Navbar brand -->
-            <a class="navbar-brand me-5" href="https://mdbgo.com/">
+            <a class="navbar-brand me-5" href="{% url 'homepage' %}">
                 <img src="https://img.freepik.com/free-icon/snakes_318-368381.jpg" height="50" alt="MDB Logo"
                     loading="lazy" style="margin-top: -1px;" />
             </a>
@@ -57,19 +55,56 @@
                 </ul>
                 <!-- Left links -->
 
-                <div class="d-flex align-items-center">
-                    <a type="button" href="{% url 'login' %}" class="btn btn-danger px-3 me-2">
-                        Log in
+                {% if request.user.is_authenticated %}
+
+                <div class="dropdown">
+                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="50"
+                            alt="Black and White Portrait of a Man" loading="lazy" />
                     </a>
-                    <a type="button" href="{% url 'signin' %}" class="btn btn-primary me-3">
-                        Sign in
-                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="#">My profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+
+            {% else %}
+            <div class="d-flex align-items-center">
+                <a type="button" href="{% url 'login' %}" class="btn btn-danger px-3 me-2">
+                    Log in
+                </a>
+                <a type="button" href="{% url 'signin' %}" class="btn btn-primary me-3">
+                    Sign in
+                </a>
+            </div>
+            {% endif %}
+        </div>
 
         </div>
     </nav>
     <!-- Navbar -->
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}" role="alert">
+        {% if user.is_authenticated %}
+        Welcome back <strong>{{request.user}}</strong>! {{ message }}
+        {% else %}
+        {{ message }}
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% endif %}
 
 
 
@@ -77,13 +112,15 @@
 
     {% endblock%}
 
-    <!-- Footer -->
-    <section>
+
+
+    <section style="margin-top: 500px;">
+    <div class="fixed-bottom mt-5">
         <div
             class="mt-5 d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
             <!-- Copyright -->
             <div class="text-white mb-3 mb-md-0">
-                Copyright © 2020. All rights reserved.
+                Copyright © 2023. All rights reserved.
             </div>
             <!-- Copyright -->
 
@@ -103,6 +140,7 @@
                 </a>
             </div>
             <!-- Right -->
+        </div>
         </div>
     </section>
     <!-- Footer End -->
