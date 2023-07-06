@@ -65,10 +65,10 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                         <li>
-                            <a class="dropdown-item" href="#">My profile</a>
+                            <a class="dropdown-item" href="#">{{request.user}}</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
