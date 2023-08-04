@@ -1,0 +1,19 @@
+{% extends "Blog/templates/base.html" %}
+
+{% block 'content' %}
+
+<!-- Default form contact -->
+<form class="container" method="post">
+{% csrf_token %}
+    <p class="h4 mb-4">Reset Password</p>
+
+    <div class="my-5">
+        {{ form }}
+    {% comment %} <button class="my-5 w-25 btn btn-primary btn-block" type="submit">Send</button> {% endcomment %}
+    </div>
+
+</form>
+<!-- Default form contact -->
+
+
+{% endblock  %}
