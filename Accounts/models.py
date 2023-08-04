@@ -8,7 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     phone = models.PositiveBigIntegerField(null=True)
     profile_pic = models.ImageField(
-        upload_to='profiles/', null=True, blank=True)
+        upload_to='profiles/', default="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp")
 
     def __str__(self):
         return str(self.user)
