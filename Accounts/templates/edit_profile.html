@@ -1,0 +1,103 @@
+{% extends "Blog/templates/base.html" %}
+
+{% block 'title' %} Edit Profile {% endblock %}
+
+
+{% block 'content' %}
+
+<section class="vh-100 my-5 container">
+  <div class="container h-100 mb-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-10 col-xl-15">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-8 col-xl-5 order-2 order-lg-1">
+
+
+                <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <center>
+                    <img id="profile_pic"
+                      src="{{ user.profile.profile_pic }}" alt="avatar"
+                      class="rounded-circle img-fluid" height=150 width=150 style="cursor:pointer">
+                    <br/>
+                    <a href="{% url 'del_profile_img' user.id %}"><i class="fa-solid fa-trash-can" style="color: #ff4747;"></i></a>
+                    <center>
+
+                      {% for profile in pobjs %}
+                      <p class="text-center h5 mb-5 mt-4">Hello, {{ profile.user }}!</p>
+                      <div class="row">
+                        <div class="d-flex flex-row align-items-center mb-4">
+                          <i class="fas fa-image fa-lg me-3 fa-fw"></i>
+                          <div class="form-outline flex-fill mb-0">
+                            <input type="file" name="image" id="form3Example1c"
+                              class="form-control" accept="image/png, image/gif, image/jpeg"/>
+                          </div>
+                        </div>
+                        
+                        <div class="d-flex flex-row align-items-center mb-4">
+                          <i class="fas fa fa-user-plus fa-lg me-3 fa-fw"></i>
+                          <div class="form-outline flex-fill mb-0">
+                            <input type="text" name="username" id="form3Example1c" value="{{ profile.user }}"
+                              class="form-control" />
+                            <label class="form-label" for="form3Example1c">Username</label>
+                          </div>
+                        </div>
+
+                        <div class="d-flex flex-row align-items-center mb-4">
+                          <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                          <div class="form-outline flex-fill mb-0">
+                            <input type="tel" name="phone" id="form3Example3c" value="{{ profile.phone }}"
+                              class="form-control" />
+                            <label class="form-label" for="form3Example3c">Phone</label>
+                          </div>
+                        </div>
+                        {% endfor %}
+
+                        <div class="d-flex flex-row align-items-center mb-4">
+                          <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                          <div class="col-sm" style="margin-right: 5px;">
+                            <div class="form-outline flex-fill mb-0">
+                              <input type="text" name="fname" id="form3Example1c" value="{{ request.user.first_name }}"
+                                class="form-control" />
+                              <label class="form-label" for="form3Example1c">First Name</label>
+                            </div>
+                          </div>
+
+                          <div class="col-sm" style="margin-left: 5px;">
+                            <div class="form-outline flex-fill mb-0">
+                              <input type="text" name="lname" id="form3Example1c" value="{{ request.user.last_name }}"
+                                class="form-control" />
+                              <label class="form-label" for="form3Example1c">Last Name</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                          <input type="email" name="email" id="form3Example3c" value="{{ request.user.email }}"
+                            class="form-control" />
+                          <label class="form-label" for="form3Example3c">Your Email</label>
+                        </div>
+                      </div>
+
+                      <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                        <button type="submit" class="btn btn-primary btn-lg mb-5">Update Profile</button>
+                      </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% endblock%}
